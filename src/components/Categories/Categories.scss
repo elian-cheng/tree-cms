@@ -1,0 +1,67 @@
+.categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 80vh;
+
+  &__main-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    p {
+      padding: 0.5rem;
+      background-color: $colorWhite;
+      border: 1px dashed $colorGray;
+      font-weight: $fontSemiBold;
+    }
+
+    button {
+      background-color: $colorGrayLight;
+      color: $colorWhite;
+      padding: 0.5rem 0.8rem;
+      border-radius: 2rem;
+    }
+  }
+}
+
+.scroll-btn {
+  position: fixed;
+  z-index: 10;
+  background-color: $colorGrayLight;
+  color: $colorWhite;
+  padding: 0.2rem 0.5rem;
+  font-size: 1.5rem;
+}
+
+.scroll-up,
+.scroll-down {
+  min-width: 6rem;
+}
+
+.scroll-left,
+.scroll-right {
+  min-height: 6rem;
+}
+
+.scroll-up {
+  top: 70px;
+  left: 50%;
+}
+
+.scroll-down {
+  bottom: 0;
+  left: 50%;
+}
+
+.scroll-left {
+  top: 50%;
+  left: 0;
+}
+
+.scroll-right {
+  top: 50%;
+  right: 0;
+}
