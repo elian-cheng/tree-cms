@@ -1,0 +1,119 @@
+.header {
+  border-bottom: 1px solid $colorGrayLight;
+  padding: 10px;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: $mobileSmall) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 1rem;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    @media (max-width: $mobile) {
+      font-size: 1rem;
+    }
+  }
+
+  &__services {
+    margin-right: 10px;
+    font-size: 22px;
+  }
+
+  &__count {
+    padding: 3px 8px;
+    color: $colorWhite;
+    background-color: $colorYellow;
+    border-radius: 40%;
+    margin-right: 10px;
+  }
+
+  &__controls {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 55%;
+    padding: 3px 5px;
+    margin-top: 5px;
+    background-color: $colorGray;
+    color: $colorWhite;
+    font-size: 15px;
+  }
+}
+
+.controls-btn {
+  padding: 1rem;
+  min-width: 42px;
+  border: none;
+  background-color: $colorWhite;
+  color: $colorGray;
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus {
+    background-color: $colorGrayLight;
+    color: $colorWhite;
+  }
+}
+
+.controls {
+  &__list-view-btn {
+    padding: 10px 15px;
+    background-color: $colorBlue;
+    color: $colorWhite;
+    text-transform: uppercase;
+    @media (max-width: $mobile) {
+      padding: 5px;
+      font-size: 0.8rem;
+    }
+  }
+
+  &__center-btn {
+    background: url('/src/assets/icons/location-arrow.svg') no-repeat center;
+    background-color: $colorWhite;
+    padding: 1.5rem;
+    margin-right: 5px;
+
+    &:hover ~ .header__tooltip {
+      display: block;
+    }
+  }
+
+  &__select-zoom-btn {
+    position: relative;
+    min-width: 60px;
+  }
+
+  &__select-zoom-list {
+    min-width: 60px;
+    padding: 0.5rem;
+    position: absolute;
+    top: 100%;
+    right: 14.3%;
+    background: $colorWhite;
+
+    li {
+      color: $colorGray;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $colorWhite;
+        background-color: $colorGrayLight;
+      }
+    }
+  }
+}

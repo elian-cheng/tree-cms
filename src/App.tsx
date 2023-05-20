@@ -1,11 +1,15 @@
+import Header from './components/Header/Header';
 import './styles.scss';
 
-function App() {
+const App = () => {
   return (
     <>
-      <h1>Vite + React</h1>
+      <Header />
+      <main className="main">
+        <div className="main__container"></div>
+      </main>
     </>
   );
-}
+};
 
 export default App;
