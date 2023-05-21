@@ -1,0 +1,72 @@
+.category {
+  position: relative;
+  margin-top: 1rem;
+  min-width: max-content;
+  text-align: center;
+
+  &::after {
+    position: absolute;
+    content: '';
+    bottom: calc(100% - 1px);
+    left: 50%;
+    width: 1px;
+    height: 16px;
+    background: $colorGrayLight;
+    transform: translateX(-50%);
+  }
+
+  input {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: 1px solid $colorGrayLight;
+    background-color: $colorBlue;
+    color: $colorWhite;
+    outline: none;
+    &::placeholder {
+      color: $colorGrayLight;
+    }
+  }
+}
+
+.control-btn {
+  background-color: $colorGrayLight;
+  color: $colorWhite;
+  border-radius: 2rem;
+  width: 30px;
+  height: 30px;
+  vertical-align: text-center;
+
+  &:not(:last-child) {
+    margin-right: 3px;
+  }
+}
+
+.cancel-btn {
+  background-color: $colorYellow;
+  font-size: 1.3rem;
+}
+
+.delete-btn {
+  background-color: $colorRed;
+  font-size: 1.3rem;
+}
+
+.confirm-btn {
+  background-color: $colorGreen;
+}
+
+.category__subitems {
+  position: relative;
+  display: flex;
+  gap: 20px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 115px;
+    left: 115px;
+    height: 1px;
+    background: $colorGrayLight;
+  }
+}

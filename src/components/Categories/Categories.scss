@@ -21,6 +21,14 @@
   }
 }
 
+.categories__list {
+  display: flex;
+  justify-content: center;
+  column-gap: 3rem;
+  margin-top: 1rem;
+  border-top: 1px solid $colorGrayLight;
+}
+
 .scroll-btn {
   position: fixed;
   z-index: 10;
