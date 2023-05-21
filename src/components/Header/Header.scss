@@ -1,6 +1,8 @@
 .header {
   border-bottom: 1px solid $colorGrayLight;
   padding: 10px;
+  position: fixed;
+  width: 100%;
 
   &__container {
     display: flex;
@@ -61,8 +63,7 @@
   color: $colorGray;
   transition: all 0.3s ease;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: $colorGrayLight;
     color: $colorWhite;
   }

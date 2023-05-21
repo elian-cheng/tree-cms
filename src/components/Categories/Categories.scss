@@ -33,6 +33,9 @@
 .scroll-up,
 .scroll-down {
   min-width: 6rem;
+  @media (max-width: $mobileSmall) {
+    transform: translate(-50%);
+  }
 }
 
 .scroll-left,
@@ -43,6 +46,9 @@
 .scroll-up {
   top: 70px;
   left: 50%;
+  @media (max-width: $mobileSmall) {
+    top: 112px;
+  }
 }
 
 .scroll-down {

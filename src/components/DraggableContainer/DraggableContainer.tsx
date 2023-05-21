@@ -1,44 +1,72 @@
-import React, { PropsWithChildren, useRef } from 'react';
+import React, { PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
+import { IPosition, PositionContext } from '../../store/positionContext';
 
 const DraggableContainer = ({ children }: PropsWithChildren) => {
-  const draggableRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [clickPosition, setClickPosition] = useState<IPosition>({
+    x: 0,
+    y: 0,
+  });
+  const { position, setPosition, draggableRef } = useContext(PositionContext);
 
-  const mouseDownHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const element = draggableRef.current!;
-    if (!element) return;
+  const headerHeight = 70;
 
-    let pos1 = 0,
-      pos2 = 0,
-      pos3 = 0,
-      pos4 = 0;
+  const mouseUpHandler = useCallback(() => {
+    setIsDragging(false);
+  }, []);
 
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = stopDragging;
-    document.onmousemove = startDragging;
+  const mouseMoveHandler = useCallback(
+    (e: MouseEvent) => {
+      if (isDragging) {
+        requestAnimationFrame(() => {
+          const x = e.clientX - clickPosition.x;
+          let y = e.clientY - clickPosition.y;
+          y = Math.max(y, headerHeight);
+          setPosition?.({ x, y });
+        });
+      }
+    },
+    [clickPosition, isDragging, setPosition]
+  );
 
-    function startDragging(e: MouseEvent) {
-      e.preventDefault();
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      element.style.top = element.offsetTop - pos2 + 'px';
-      element.style.left = element.offsetLeft - pos1 + 'px';
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener('mousemove', mouseMoveHandler);
+      window.addEventListener('mouseup', mouseUpHandler);
+    } else {
+      window.removeEventListener('mousemove', mouseMoveHandler);
+      window.removeEventListener('mouseup', mouseUpHandler);
     }
 
-    function stopDragging() {
-      document.onmouseup = null;
-      document.onmousemove = null;
-    }
-  };
+    return () => {
+      window.removeEventListener('mousemove', mouseMoveHandler);
+      window.removeEventListener('mouseup', mouseUpHandler);
+    };
+  }, [isDragging, mouseMoveHandler, mouseUpHandler]);
+
+  const mouseDownHandler = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      setClickPosition({
+        x: event.clientX - position.x,
+        y: event.clientY - position.y,
+      });
+      setIsDragging(true);
+    },
+    [position]
+  );
 
   return (
-    <div ref={draggableRef} className="draggable__wrapper">
-      <div className="draggable__element" onMouseDown={mouseDownHandler}>
-        {children}
-      </div>
+    <div
+      ref={draggableRef}
+      className="draggable__wrapper"
+      onMouseDown={mouseDownHandler}
+      style={{
+        top: position.y,
+        left: position.x,
+        cursor: isDragging ? 'grabbing' : 'grab',
+      }}
+    >
+      {children}
     </div>
   );
 };
