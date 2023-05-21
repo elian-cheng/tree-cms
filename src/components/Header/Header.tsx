@@ -5,7 +5,7 @@ const zoomSelect = ['25', '30', '40', '50', '60', '70', '80', '90', '100', '125'
 
 const Header = () => {
   const [isVisibleZoomSelect, setIsVisibleZoomSelect] = useState(false);
-  const { setPosition, draggableRef } = useContext(PositionContext);
+  const { setPosition, draggableRef, scale, setScale } = useContext(PositionContext);
 
   const zoomSelectVisibilityHandler = () => {
     setIsVisibleZoomSelect((prevState) => !prevState);
@@ -24,6 +24,14 @@ const Header = () => {
     centerPositionHandler();
   }, [centerPositionHandler]);
 
+  const zoomInHandler = () => {
+    setScale((prevScale) => prevScale + 0.1);
+  };
+
+  const zoomOutHandler = () => {
+    setScale((prevScale) => (prevScale > 0.1 ? prevScale - 0.1 : 0.1));
+  };
+
   return (
     <header className="header">
       <div className="header__container">
@@ -41,23 +49,31 @@ const Header = () => {
             onClick={centerPositionHandler}
           ></button>
 
-          <button id="zoom-out" className="controls__zoom-out-btn controls-btn">
+          <button
+            id="zoom-out"
+            className="controls__zoom-out-btn controls-btn"
+            onClick={zoomOutHandler}
+          >
             &#8722;
           </button>
           <button
             className="controls__select-zoom-btn controls-btn"
             onClick={zoomSelectVisibilityHandler}
           >
-            <span>100%</span>
+            {(scale * 100).toFixed()}%
           </button>
           {isVisibleZoomSelect && (
             <ul className="controls__select-zoom-list">
               {zoomSelect.map((value) => (
-                <li key={value}>{value}%</li>
+                <li key={value} onClick={() => setScale(+value * 0.01)}>
+                  {value}%
+                </li>
               ))}
             </ul>
           )}
-          <button className="controls__zoom-in-btn controls-btn">&#43;</button>
+          <button className="controls__zoom-in-btn controls-btn" onClick={zoomInHandler}>
+            &#43;
+          </button>
           <p className="header__tooltip">Go to center</p>
         </div>
       </div>

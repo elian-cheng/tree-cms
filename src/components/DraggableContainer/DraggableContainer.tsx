@@ -7,7 +7,7 @@ const DraggableContainer = ({ children }: PropsWithChildren) => {
     x: 0,
     y: 0,
   });
-  const { position, setPosition, draggableRef } = useContext(PositionContext);
+  const { position, setPosition, draggableRef, scale } = useContext(PositionContext);
 
   const headerHeight = 70;
 
@@ -63,6 +63,7 @@ const DraggableContainer = ({ children }: PropsWithChildren) => {
       style={{
         top: position.y,
         left: position.x,
+        transform: `scale(${scale})`,
         cursor: isDragging ? 'grabbing' : 'grab',
       }}
     >

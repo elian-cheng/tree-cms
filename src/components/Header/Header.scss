@@ -94,21 +94,22 @@
 
   &__select-zoom-btn {
     position: relative;
-    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
   }
 
   &__select-zoom-list {
-    min-width: 60px;
-    padding: 0.5rem;
+    width: 60px;
     position: absolute;
     top: 100%;
-    right: 14.3%;
+    right: 14.8%;
     background: $colorWhite;
 
     li {
       color: $colorGray;
       padding: 0.5rem;
       cursor: pointer;
+      text-align: center;
       transition: all 0.3s ease;
 
       &:hover {

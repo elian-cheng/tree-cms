@@ -3,14 +3,14 @@ import DraggableContainer from '../../components/DraggableContainer/DraggableCon
 const Categories = () => {
   return (
     <main className="main">
-      <div className="categories">
-        <DraggableContainer>
+      <DraggableContainer>
+        <div className="categories">
           <div className="categories__main-item">
             <p>Categories</p>
             <button>&#43;</button>
           </div>
-        </DraggableContainer>
-      </div>
+        </div>
+      </DraggableContainer>
       <button className="scroll-btn scroll-up">&#708;</button>
       <button className="scroll-btn scroll-down">&#709;</button>
       <button className="scroll-btn scroll-left">&#706;</button>
