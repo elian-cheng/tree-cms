@@ -28,6 +28,11 @@
   color: $colorWhite;
   padding: 0.2rem 0.5rem;
   font-size: 1.5rem;
+  transition: background-color 0.3s ease 0s;
+
+  &:hover {
+    background-color: $colorGray;
+  }
 }
 
 .scroll-up,
